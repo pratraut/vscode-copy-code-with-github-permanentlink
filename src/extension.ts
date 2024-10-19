@@ -158,7 +158,7 @@ export function activate(context: vscode.ExtensionContext) {
         const url = `${httpsUrl}/${treeOrBlob}/${commit.hash}/${filePath}`;
         const document = activeTextEditor.document;
         const selectedText = document.getText(selection);
-        const markdown = url + '\n\n```' + document.languageId + '\n' + selectedText + '\n```';
+        const markdown = url + '\n```' + document.languageId + '\n' + selectedText + '\n```';
         vscode.env.clipboard.writeText(markdown);
         vscode.window.showInformationMessage('GitHub URL and code copied to the clipboard!');
       });
