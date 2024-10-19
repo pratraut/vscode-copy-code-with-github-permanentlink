@@ -1,34 +1,47 @@
 {
-  "name": "vscode-copy-github-permalink",
-  "displayName": "vscode-copy-github-permalink",
-  "description": "Copies GitHub permalink of active file (name and line) to clipboard on VSCode",
-  "version": "0.3.0",
+  "name": "vscode-githublinker-with-markdown",
+  "displayName": "vscode-githublinker-with-markdown",
+  "description": "Copies GitHub permalink of active file (name and line(s)) along with the selected text in markdown to clipboard on VSCode",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.73.1"
   },
-  "publisher": "hogashi",
-  "repository": "https://github.com/hogashi/vscode-copy-github-permalink/",
+  "publisher": "pratraut",
+  "repository": "https://github.com/pratraut/vscode-githublinker-with-markdown/",
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onCommand:copy-github-permalink.activate"
+    "onCommand:githublinker-with-markdown.copyLink",
+    "onCommand:githublinker-with-markdown.copyMarkdown"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "copy-github-permalink.activate",
-        "title": "Copy GitHub Permalink"
+        "when": "editorTextFocus || editorHasSelection",
+        "command": "githublinker-with-markdown.copyLink",
+        "title": "GitHub Linker with Markdown: Copy link to selection"
+      },
+      {
+        "when": "editorTextFocus || editorHasSelection",
+        "command": "githublinker-with-markdown.copyMarkdown",
+        "title": "GitHub Linker with Markdown: Copy link to selection and code as markdown"
       }
     ],
     "menus": {
-      "editor/context": [
-        {
-          "command": "copy-github-permalink.activate",
-          "group": "9_cutcopypaste@3"
-        }
-      ]
+        "editor/context": [
+            {
+                "when": "editorTextFocus || editorHasSelection",
+                "command": "githublinker-with-markdown.copyLink",
+                "group": "9_cutcopypaste"
+            },
+            {
+                "when": "editorTextFocus || editorHasSelection",
+                "command": "githublinker-with-markdown.copyMarkdown",
+                "group": "9_cutcopypaste"
+            }
+        ]
     }
   },
   "extensionDependencies": [
